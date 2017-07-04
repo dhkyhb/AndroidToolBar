@@ -2,6 +2,7 @@ package com.example.administrator.androidtoolbar.View;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -50,15 +51,15 @@ public class PicAndTextBtn extends LinearLayout {
 
     }
 
-    public void setClickListener(PicAndTextBtnListener listener){
+    public void setOnClickListener(PicAndTextBtnListener listener) {
         this.listener = listener;
     }
 
-    public void setImageView(int id){
+    public void setImageView(int id) {
         ivPic.setImageResource(id);
     }
 
-    interface PicAndTextBtnListener{
+    interface PicAndTextBtnListener {
 
         void onClick(View v);
 
@@ -68,31 +69,36 @@ public class PicAndTextBtn extends LinearLayout {
         ivPic.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(v);
+                if (listener != null) {
+                    listener.onClick(v);
+                }
             }
         });
 
         tvInfo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(v);
+                if (listener != null) {
+                    listener.onClick(v);
+                }
             }
         });
     }
 
     private void setLayoutParames() {
 
-        setOrientation(VERTICAL);
-        setGravity(Gravity.CENTER_HORIZONTAL);
-        tvInfo.setGravity(Gravity.CENTER);
+        setOrientation(HORIZONTAL);
+        setGravity(Gravity.CENTER_VERTICAL);
+        tvInfo.setGravity(Gravity.CENTER_VERTICAL);
         tvInfo.setPadding(20, 0, 0, 0);
+        ivPic.setPadding(20, 0, 0, 0);
 
         LayoutParams imageParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         addView(ivPic, imageParams);
 
-        LayoutParams tvParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams tvParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
         addView(tvInfo, tvParams);
 
     }
@@ -102,6 +108,16 @@ public class PicAndTextBtn extends LinearLayout {
         ivPic = new ImageView(context);
         tvInfo = new TextView(context);
 
+        ivPic.setImageDrawable(pic);
+        ivPic.setBackground(picBackground);
+
+        tvInfo.setText(text);
+        tvInfo.setTextSize(textSize);
+        tvInfo.setTextColor(textColor);
+        tvInfo.setBackground(textBackfround);
+
+        tvInfo.setGravity(Gravity.CENTER);
+
     }
 
     private void findAttrs(AttributeSet attrs) {
@@ -110,7 +126,7 @@ public class PicAndTextBtn extends LinearLayout {
 
         text = typedArray.getString(R.styleable.PicAndTextBtn_text);
         textSize = typedArray.getDimension(R.styleable.PicAndTextBtn_textSize, 14);
-        textColor = typedArray.getColor(R.styleable.PicAndTextBtn_textColor, 0);
+        textColor = typedArray.getColor(R.styleable.PicAndTextBtn_textColor, Color.BLACK);
         textBackfround = typedArray.getDrawable(R.styleable.PicAndTextBtn_textBackground);
 
         pic = typedArray.getDrawable(R.styleable.PicAndTextBtn_pic);

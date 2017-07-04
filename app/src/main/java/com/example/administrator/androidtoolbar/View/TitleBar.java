@@ -40,6 +40,7 @@ public class TitleBar extends RelativeLayout {
     private int titleTextColor;
     private Drawable titleBackground;
 
+    private int generBackground;
     private titleBarClickListener listener;
 
 
@@ -54,6 +55,8 @@ public class TitleBar extends RelativeLayout {
         findAtrr(attrs);
         initViews();
         setTitleLayoutParams();
+        setButtonClickListener();
+
     }
 
     private void setTitleLayoutParams() {
@@ -82,7 +85,7 @@ public class TitleBar extends RelativeLayout {
     private void initViews() {
 
         btnLeft = new Button(context);
-        btnRight= new Button(context);
+        btnRight = new Button(context);
         tvTitle = new TextView(context);
 
         btnLeft.setText(leftText);
@@ -90,67 +93,72 @@ public class TitleBar extends RelativeLayout {
         btnLeft.setTextColor(leftTextColor);
         btnLeft.setBackground(leftBackground);
 
-        btnRight.setText(leftText);
-        btnRight.setTextSize(leftTextSize);
-        btnRight.setTextColor(leftTextColor);
-        btnRight.setBackground(leftBackground);
+        btnRight.setText(rightText);
+        btnRight.setTextSize(rightTextSize);
+        btnRight.setTextColor(rightTextColor);
+        btnRight.setBackground(rightBackground);
 
-        tvTitle.setText(leftText);
-        tvTitle.setTextSize(leftTextSize);
-        tvTitle.setTextColor(leftTextColor);
-        tvTitle.setBackground(leftBackground);
+        tvTitle.setText(titleText);
+        tvTitle.setTextSize(titleTextSize);
+        tvTitle.setTextColor(titleTextColor);
+        tvTitle.setBackground(titleBackground);
 
+        setBackgroundColor(generBackground);
     }
 
     private void findAtrr(AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TitleBar);
 
         leftText = typedArray.getString(R.styleable.TitleBar_leftText);
-        leftTextSize = typedArray.getDimension(R.styleable.TitleBar_leftTextSize, 24);
+        leftTextSize = typedArray.getDimension(R.styleable.TitleBar_leftTextSize, 12);
         leftTextColor = typedArray.getColor(R.styleable.TitleBar_leftTextColor, 0);
         leftBackground = typedArray.getDrawable(R.styleable.TitleBar_leftBackground);
 
         rightText = typedArray.getString(R.styleable.TitleBar_rightText);
-        rightTextSize = typedArray.getDimension(R.styleable.TitleBar_rightTextSize, 24);
+        rightTextSize = typedArray.getDimension(R.styleable.TitleBar_rightTextSize, 12);
         rightTextColor = typedArray.getColor(R.styleable.TitleBar_rightTextColor, 0);
         rightBackground = typedArray.getDrawable(R.styleable.TitleBar_rightBackground);
 
         titleText = typedArray.getString(R.styleable.TitleBar_titleText);
-        titleTextSize = typedArray.getDimension(R.styleable.TitleBar_titleTextSize, 24);
+        titleTextSize = typedArray.getDimension(R.styleable.TitleBar_titleTextSize, 12);
         titleTextColor = typedArray.getColor(R.styleable.TitleBar_titleTextColor, 0);
-        titleBackground = typedArray.getDrawable(R.styleable.TitleBar_titleBackguround );
+        titleBackground = typedArray.getDrawable(R.styleable.TitleBar_titleBackguround);
+
+        generBackground = typedArray.getColor(R.styleable.TitleBar_generalBackgroundColor, 0);
 
         typedArray.recycle();
 
     }
 
-    private interface titleBarClickListener{
+    public interface titleBarClickListener {
 
         void leftClickListener();
+
         void rightClickListener();
 
     }
 
-    public void setTitleBarClickListener(titleBarClickListener listener){
+    public void setTitleBarClickListener(titleBarClickListener listener) {
         this.listener = listener;
     }
 
-    public void leftClickListener(){
+    public void setButtonClickListener() {
         btnLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.leftClickListener();
+                if (listener != null) {
+                    listener.leftClickListener();
+                }
             }
         });
-    }
 
-    public void rightClickListener(){
         btnRight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.rightClickListener();
+                if (listener != null) {
+                    listener.rightClickListener();
+                }
             }
         });
     }
-
 }

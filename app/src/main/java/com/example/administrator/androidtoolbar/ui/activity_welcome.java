@@ -21,7 +21,7 @@ public class activity_welcome extends AppCompatActivity {
 
     private static final int GOGUIDE = 0;
     private static final int GOMAIN = 1;
-    private static final int DELAY = 5000;
+    private static final int DELAY = 2000;
 
     private Handler handler = new Handler() {
         @Override

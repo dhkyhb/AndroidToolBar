@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_background"
+    android:id="@+id/dl_main"
+    android:background="@drawable/shot6"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,6 +12,19 @@
         android:orientation="vertical"
         >
 
+        <com.example.administrator.androidtoolbar.View.TitleBar
+            android:id="@+id/titlebar_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:leftText="CR"
+            app:leftTextSize="12sp"
+            app:leftTextColor="#FEEC6C"
+            app:rightText="+"
+            app:rightTextSize="12sp"
+            app:rightTextColor="#FEEC6C"
+            app:generalBackgroundColor="#995B3A2F"
+            ></com.example.administrator.androidtoolbar.View.TitleBar>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewp_main"
@@ -27,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="#88CFD1CE"
             app:tabGravity="fill"
             app:tabIndicatorHeight="4dp"
             app:tabMode="fixed"
@@ -46,13 +61,7 @@
         android:layout_gravity="start"
         >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="侧滑界面"
-            android:textColor="@color/tabwidget_Selected"
-            android:textSize="26sp" />
+        <include layout="@layout/main_left_slide_layout"></include>
 
     </LinearLayout>
 

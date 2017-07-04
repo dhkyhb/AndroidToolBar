@@ -17,6 +17,7 @@
         <attr name="rightTextSize" format="dimension"></attr>
         <attr name="rightTextColor" format="color"></attr>
         <attr name="rightBackground" format="reference|color"></attr>
+        <attr name="generalBackgroundColor" format="color"></attr>
 
     </declare-styleable>
 

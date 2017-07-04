@@ -5,10 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.example.administrator.androidtoolbar.R;
+import com.example.administrator.androidtoolbar.View.TitleBar;
 import com.example.administrator.androidtoolbar.View.chatFragment;
 import com.example.administrator.androidtoolbar.View.contactFragment;
 import com.example.administrator.androidtoolbar.View.infoFragment;
@@ -31,6 +33,9 @@ public class activity_main extends AppCompatActivity{
     private fragmentAdapter chatAdapter;
     private List<Fragment> frag_lists;
     private TabLayout tab_main;
+    private DrawerLayout dl_main;
+
+    private TitleBar titleBar;
 
 
     @Override
@@ -41,26 +46,23 @@ public class activity_main extends AppCompatActivity{
 
         initView();
         setAdapter();
-//        setListener();
+        setListener();
     }
 
     private void setListener() {
-        tab_main.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                vp_main.setCurrentItem(tab.getPosition());
-            }
 
+        titleBar.setTitleBarClickListener(new TitleBar.titleBarClickListener() {
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void leftClickListener() {
 
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void rightClickListener() {
 
             }
         });
+
     }
 
     /**
@@ -86,6 +88,8 @@ public class activity_main extends AppCompatActivity{
 //        tabList = new ArrayList<>();
         vp_main = (ViewPager) findViewById(R.id.viewp_main);
         tab_main = (TabLayout) findViewById(R.id.tabL_main);
+        titleBar = (TitleBar) findViewById(R.id.titlebar_main);
+        dl_main = (DrawerLayout) findViewById(R.id.dl_main);
 
         frag_lists = new ArrayList<>();
         frag_lists.add(new chatFragment());
