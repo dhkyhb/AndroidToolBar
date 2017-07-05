@@ -6,6 +6,7 @@
     <color name="red">#F86635</color>
     <color name="green">#8B94BA</color>
     <color name="blue">#523BE1</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="tabwidget_Selected">#ED5433</color>
     <color name="tabwidget_Unselected">#F3AEA5</color>

@@ -23,7 +23,7 @@
             app:rightText="+"
             app:rightTextSize="12sp"
             app:rightTextColor="#FEEC6C"
-            app:generalBackgroundColor="#995B3A2F"
+            app:generalBackgroundColor="#aa5B3A2F"
             ></com.example.administrator.androidtoolbar.View.TitleBar>
 
         <android.support.v4.view.ViewPager

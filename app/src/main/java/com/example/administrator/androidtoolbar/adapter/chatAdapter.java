@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.androidtoolbar.R;
+import com.example.administrator.androidtoolbar.Utils.TLog;
 import com.example.administrator.androidtoolbar.bean.UserItemMsg;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.chatViewHolder
 
     @Override
     public int getItemCount() {
-        return userItemMsgList.size();
+        return (userItemMsgList == null ? 0 : userItemMsgList.size());
     }
 
     class chatViewHolder extends RecyclerView.ViewHolder{
@@ -51,12 +52,19 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.chatViewHolder
         private TextView tvName;
         private TextView tvSignature;
 
-        public chatViewHolder(View itemView) {
+         chatViewHolder(View itemView) {
             super(itemView);
 
             ivIcon = (ImageView) itemView.findViewById(R.id.iv_chat_icon);
             tvName = (TextView) itemView.findViewById(R.id.tv_chat_name);
             tvSignature = (TextView) itemView.findViewById(R.id.tv_chat_signature);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TLog.showToast(tvName.getText().toString());
+                }
+            });
 
         }
     }

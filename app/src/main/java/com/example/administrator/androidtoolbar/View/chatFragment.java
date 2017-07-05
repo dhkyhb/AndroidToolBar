@@ -3,8 +3,10 @@ package com.example.administrator.androidtoolbar.View;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.administrator.androidtoolbar.R;
 import com.example.administrator.androidtoolbar.adapter.chatAdapter;
 import com.example.administrator.androidtoolbar.bean.UserItemMsg;
+import com.example.administrator.androidtoolbar.module.chatRecyclerItemCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +48,11 @@ public class chatFragment extends Fragment {
         userItemMsgList = new ArrayList<>();
         loadData();
         mAdapter = new chatAdapter(context, userItemMsgList);
-
+        ItemTouchHelper.Callback mCallback = new chatRecyclerItemCallback(userItemMsgList, mAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
+        itemTouchHelper.attachToRecyclerView(mChatRecycler);
         mChatRecycler.setLayoutManager(new LinearLayoutManager(context));
+        mChatRecycler.setItemAnimator(new DefaultItemAnimator());
         mChatRecycler.setAdapter(mAdapter);
     }
 
@@ -59,6 +65,5 @@ public class chatFragment extends Fragment {
             userItemMsg.setTvSignature("You know who i am");
             userItemMsgList.add(userItemMsg);
         }
-
     }
 }

@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_contact"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#aaCFD1CE"
+    android:orientation="vertical">
 
-    <TextView
+
+    <com.example.administrator.androidtoolbar.View.PicAndTextBtn
+        android:id="@+id/PAT_contact_groups"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/Contacts"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:fontFamily="casual"
-        android:textColor="#F3AEA5"/>
+        android:layout_height="46dp"
+        app:pic="@drawable/shink"
+        app:text="Groups"
+        app:textSize="10sp"
+        android:paddingLeft="10dp"
+        android:background="#66dcdcdc"/>
 
-</RelativeLayout>
+    <ListView
+        android:id="@+id/contacts_group_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:visibility="gone"></ListView>
+
+    <com.example.administrator.androidtoolbar.View.PicAndTextBtn
+        android:id="@+id/PAT_contact_friends"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        app:pic="@drawable/shink"
+        app:text="Friends"
+        app:textSize="10sp"
+        android:paddingLeft="10dp"
+        android:background="#66dcdcdc"/>
+
+    <ListView
+        android:id="@+id/contacts_contacts_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:visibility="gone"></ListView>
+
+
+</LinearLayout>
