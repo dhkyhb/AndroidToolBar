@@ -66,6 +66,7 @@ public class activity_main extends AppCompatActivity{
                 tab_main.setTabTextColors(ContextCompat.getColor(activity_main.this,
                         R.color.black), ContextCompat.getColor(activity_main.this,
                         R.color.blue));
+                vp_main.setCurrentItem(position);
             }
 
             @Override
